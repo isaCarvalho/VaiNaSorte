@@ -1,0 +1,2 @@
+rootProject.name='VaiNaSorte'
+include ':app'
