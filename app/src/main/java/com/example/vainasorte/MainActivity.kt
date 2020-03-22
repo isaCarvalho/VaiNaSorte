@@ -1,6 +1,9 @@
 package com.example.vainasorte
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -70,13 +73,17 @@ class MainActivity : AppCompatActivity(), NumberDialogFragment.NumberDialogListe
 
         limInfText = "1"
         limSupText = "100"
+
+        sortear(limInfText, limSupText)
     }
 
     override fun onDialogPositiveClick(dialog: DialogFragment, limiteSup: String, limiteInf: String) {
         Toast.makeText(applicationContext, "Valores selecionados", Toast.LENGTH_SHORT).show()
 
-        limInfText = limiteInf
-        limSupText = limiteSup
+        limInfText = if (limiteInf.length > 4) "1" else limiteInf
+        limSupText = if (limiteSup.length > 4) "100" else limiteSup
+
+        sortear(limInfText, limSupText)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -89,7 +96,21 @@ class MainActivity : AppCompatActivity(), NumberDialogFragment.NumberDialogListe
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId)
         {
-            R.id.copiar -> true
+            R.id.copiar ->
+            {
+                val text = if (tab!!.selectedTabPosition == 0)
+                    findViewById<TextView>(R.id.numbersTextView).text.toString()
+                else
+                    findViewById<TextView>(R.id.letterTextView).text.toString()
+
+                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clip: ClipData = ClipData.newPlainText("value", text)
+
+                clipboard.setPrimaryClip(clip)
+
+                Toast.makeText(applicationContext, "Copiado para a área de transferência", Toast.LENGTH_SHORT).show()
+                true
+            }
 
             R.id.escolher -> {
                 showNumberDialog()
