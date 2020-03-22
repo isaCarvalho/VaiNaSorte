@@ -23,38 +23,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/limInferior"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:autofillHints="@string/limiteInf"
-            android:ems="10"
-            android:fontFamily="serif-monospace"
-            android:hint="@string/limiteInf"
-            android:inputType="numberDecimal"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/numbersTextView" />
-
-        <EditText
-            android:id="@+id/limSuperior"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:autofillHints="@string/limiteSup"
-            android:ems="10"
-            android:fontFamily="serif-monospace"
-            android:hint="@string/limiteSup"
-            android:inputType="numberDecimal"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/limInferior" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
