@@ -62,21 +62,18 @@ class MainActivity : AppCompatActivity(), NumberDialogFragment.NumberDialogListe
     }
 
     override fun onDialogNegativeClick(dialog: DialogFragment) {
-        limSupText = "100"
-        limInfText = "1"
-
-        Toast.makeText(applicationContext, "Valores padrão utilizados", Toast.LENGTH_SHORT)
+        Toast.makeText(applicationContext, "Valores padrão utilizados", Toast.LENGTH_SHORT).show()
 
         sortear(limInfText, limSupText)
     }
 
-    override fun onDialogPositiveClick(dialog: DialogFragment) {
-        limSupText = findViewById<EditText>(R.id.limSuperior).text.toString()
-        limInfText = findViewById<EditText>(R.id.limInferior).text.toString()
+    override fun onDialogPositiveClick(dialog: DialogFragment, limiteSup: String, limiteInf: String) {
+        Toast.makeText(applicationContext, "Valores selecionados", Toast.LENGTH_SHORT).show()
 
-        Toast.makeText(applicationContext, "Valores selecionados", Toast.LENGTH_SHORT)
+        limInfText = limiteInf
+        limSupText = limiteSup
 
-        sortear(limInfText, limSupText)
+        sortear(limiteInf, limiteSup)
     }
 
     @SuppressLint("SetTextI18n")
