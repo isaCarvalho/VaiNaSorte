@@ -37,7 +37,7 @@ class NumberDialogFragment : DialogFragment() {
 
             builder.setTitle(R.string.messageDialog)
                 .setView(mView)
-                .setIcon(R.drawable.ic_launcher_background)
+                .setIcon(R.mipmap.ic_dice_background)
                 .setPositiveButton(R.string.ok,
                     DialogInterface.OnClickListener { dialog, id ->
 

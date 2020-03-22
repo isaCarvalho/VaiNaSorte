@@ -3,7 +3,9 @@ package com.example.vainasorte
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity(), NumberDialogFragment.NumberDialogListe
         var limSupText: String = "100"
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,8 +57,9 @@ class MainActivity : AppCompatActivity(), NumberDialogFragment.NumberDialogListe
 
         val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
         fab.setOnClickListener {
+
             if (tab!!.selectedTabPosition == 0)
-                showNumberDialog()
+                sortear(limInfText, limSupText)
             else
                 findViewById<TextView>(R.id.letterTextView).text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".random().toString()
         }
@@ -64,7 +68,8 @@ class MainActivity : AppCompatActivity(), NumberDialogFragment.NumberDialogListe
     override fun onDialogNegativeClick(dialog: DialogFragment) {
         Toast.makeText(applicationContext, "Valores padrão utilizados", Toast.LENGTH_SHORT).show()
 
-        sortear(limInfText, limSupText)
+        limInfText = "1"
+        limSupText = "100"
     }
 
     override fun onDialogPositiveClick(dialog: DialogFragment, limiteSup: String, limiteInf: String) {
@@ -72,11 +77,29 @@ class MainActivity : AppCompatActivity(), NumberDialogFragment.NumberDialogListe
 
         limInfText = limiteInf
         limSupText = limiteSup
-
-        sortear(limiteInf, limiteSup)
     }
 
-    @SuppressLint("SetTextI18n")
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflate : MenuInflater = menuInflater
+        inflate.inflate(R.menu.main_menu, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId)
+        {
+            R.id.copiar -> true
+
+            R.id.escolher -> {
+                showNumberDialog()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun sortear(limInf : String, limSup : String)
     {
         // valida o limite inferior

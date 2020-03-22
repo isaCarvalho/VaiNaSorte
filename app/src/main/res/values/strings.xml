@@ -15,4 +15,7 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancelar</string>
 
+    <string name="copiar">Copiar</string>
+    <string name="sortear">Escolher</string>
+
 </resources>
